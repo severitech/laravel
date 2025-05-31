@@ -238,8 +238,12 @@ class ServeCommand extends Command
 
         $port = $port ?: 8000;
 
-        return $port + $this->portOffset;
+        $portInt = is_numeric($port) ? (int)$port : 8000;
+        $offsetInt = is_numeric($this->portOffset) ? (int)$this->portOffset : 0;
+
+        return $portInt + $offsetInt;
     }
+
 
     /**
      * Get the host and port from the host option string.
